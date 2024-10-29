@@ -24,6 +24,8 @@
 
         public int Voltagem { get; set; }
 
+        public string MaquinaDetalhes { get; set; }
+
         public static implicit operator List<object>(MaquinaModel v)
         {
             throw new NotImplementedException();

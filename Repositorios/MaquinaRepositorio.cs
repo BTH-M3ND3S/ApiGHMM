@@ -50,6 +50,7 @@ namespace ApiGHMM.Repositorios
                 maquinaExistente.FotoUrl = maquina.FotoUrl;
                 maquinaExistente.Peso = maquina.Peso;
                 maquinaExistente.Voltagem = maquina.Voltagem;
+                maquinaExistente.MaquinaDetalhes = maquina.MaquinaDetalhes;
                 await _dbContext.SaveChangesAsync();
             }
             return maquinaExistente;

@@ -17,7 +17,7 @@ builder.Services.AddEntityFrameworkSqlServer()
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
     );
 
-builder.Services.AddScoped<IFuncionariosRepositorio, FuncionariosRepositorio>();
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<ICargoRepositorio, CargoRepositorio>();
 builder.Services.AddScoped<ISetorRepositorio, SetorRepositorio>();
 builder.Services.AddScoped<IFornecedorRepositorio, FornecedorRepositorio>();
@@ -26,10 +26,23 @@ builder.Services.AddScoped<IPecaRepositorio, PecaRepositorio>();
 builder.Services.AddScoped<ITipoMaquinaRepositorio, TipoMaquinaRepositorio>();
 builder.Services.AddScoped<ITipoManutencaoRepositorio, TipoManutencaoRepositorio>();
 builder.Services.AddScoped<ICategoriaPecaRepositorio, CategoriaPecaRepositorio>();
-builder.Services.AddScoped<IRelatorioRepositorio, RelatorioRepositorio>();
 builder.Services.AddScoped<IManutencaoEPecasRepositorio, ManutencaoEPecasRepositorio>();
 builder.Services.AddScoped<IMaquinaRepositorio, MaquinaRepositorio>();
 builder.Services.AddScoped<IManutencaoRepositorio, ManutencaoRepositorio>();
+builder.Services.AddScoped<ITecnicoRepositorio, TecnicoRepositorio>();
+builder.Services.AddScoped<ITecnicoUsuarioRepositorio, TecnicoUsuarioRepositorio>();
+builder.Services.AddScoped<ITecnicoTipoRepositorio, TecnicoTipoRepositorio>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
 
@@ -43,6 +56,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 

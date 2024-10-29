@@ -55,6 +55,8 @@ namespace ApiGHMM.Repositorios
             // Atualize as propriedades conforme necessário
             pecaExistente.PecaNome = peca.PecaNome;
             pecaExistente.QuantidadeEstoque = peca.QuantidadeEstoque;
+            pecaExistente.FornecedorId = peca.FornecedorId;
+            pecaExistente.CategoriaPecaId = peca.CategoriaPecaId;
 
             await _dbContext.SaveChangesAsync();
             return pecaExistente;

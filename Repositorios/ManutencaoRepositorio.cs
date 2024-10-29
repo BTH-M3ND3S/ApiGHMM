@@ -44,6 +44,7 @@ namespace ApiGHMM.Repositorios
                 manutencaoExistente.ManutencaoData = manutencao.ManutencaoData;
                 manutencaoExistente.ManutencaoDescricao = manutencao.ManutencaoDescricao;
                 manutencaoExistente.ManutencaoCusto = manutencao.ManutencaoCusto;
+                manutencaoExistente.TecnicosId = manutencao.TecnicosId;
                 await _dbContext.SaveChangesAsync();
             }
             return manutencaoExistente;

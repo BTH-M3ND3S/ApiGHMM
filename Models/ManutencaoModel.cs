@@ -12,6 +12,9 @@
 
         public decimal ManutencaoCusto { get; set; }
 
+        public int TecnicosId { get; set; }
+
+
         public static implicit operator List<object>(ManutencaoModel v)
         {
             throw new NotImplementedException();

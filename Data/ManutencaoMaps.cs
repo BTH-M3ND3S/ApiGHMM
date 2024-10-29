@@ -13,6 +13,7 @@ namespace ApiGHMM.Data
             builder.Property(x => x.ManutencaoData).IsRequired().HasMaxLength(255);
             builder.Property(x => x.ManutencaoDescricao).IsRequired().HasMaxLength(255);
             builder.Property(x => x.ManutencaoCusto).IsRequired();
+            builder.Property(x => x.TecnicosId).IsRequired();
         }
     }
 }

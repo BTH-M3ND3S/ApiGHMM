@@ -12,7 +12,7 @@ namespace ApiGHMM.Data
 
         }
 
-        public DbSet<FuncionarioModel> Funcionario { get; set; }
+        public DbSet<UsuarioModel> Usuario { get; set; }
 
         public DbSet<CargoModel> Cargo { get; set; }
 
@@ -28,18 +28,23 @@ namespace ApiGHMM.Data
 
         public DbSet<CategoriaPecaModel> CategoriaPeca { get; set; }
 
-        public DbSet<RelatorioModel> Relatorio { get; set; }
-
         public DbSet<ManutencaoEPecasModel> ManutencaoEPecas { get; set; }
 
         public DbSet<MaquinaModel> Maquina { get; set; }
         public DbSet<ManutencaoModel> Manutencao { get; set; }
 
+        public DbSet<TecnicosModel> Tecnicos { get; set; }
+
+        public DbSet<TecnicoUsuarioModel> TecnicoUsuario { get; set; }
+
+        public DbSet<TecnicoTipoModel> TecnicoTipo { get; set; }
+
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new FuncionarioMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMaps());
             modelBuilder.ApplyConfiguration(new CargoMap());
             modelBuilder.ApplyConfiguration(new SetorMap());
             modelBuilder.ApplyConfiguration(new FornecedorMap());
@@ -48,10 +53,12 @@ namespace ApiGHMM.Data
             modelBuilder.ApplyConfiguration(new TipoMaquinaMap());
             modelBuilder.ApplyConfiguration(new TipoManutencaoMap());
             modelBuilder.ApplyConfiguration(new CategoriaPecaMap());
-            modelBuilder.ApplyConfiguration(new RelatorioMap());
             modelBuilder.ApplyConfiguration(new ManutencaoEPecasMap());
             modelBuilder.ApplyConfiguration(new MaquinaMap());
             modelBuilder.ApplyConfiguration(new ManutencaoMap());
+            modelBuilder.ApplyConfiguration(new TecnicosMaps());
+            modelBuilder.ApplyConfiguration(new TecnicoUsuarioMaps());
+            modelBuilder.ApplyConfiguration(new TecnicoTipoMaps());
             base.OnModelCreating(modelBuilder);
         }
 

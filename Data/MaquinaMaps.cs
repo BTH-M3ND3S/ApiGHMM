@@ -19,6 +19,7 @@ namespace ApiGHMM.Data
             builder.Property(x => x.FotoUrl).IsRequired();
             builder.Property(x => x.Peso).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Voltagem).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.MaquinaDetalhes).IsRequired().HasMaxLength(255);
         }
     }
 }

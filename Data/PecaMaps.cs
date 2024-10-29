@@ -11,6 +11,8 @@ namespace ApiGHMM.Data
             builder.HasKey(x => x.PecaId);
             builder.Property(x => x.PecaNome).IsRequired().HasMaxLength(255);
             builder.Property(x => x.QuantidadeEstoque).IsRequired();
+            builder.Property(x => x.FornecedorId).IsRequired();
+            builder.Property(x => x.CategoriaPecaId).IsRequired();
         }
     }
 }

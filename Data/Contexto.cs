@@ -39,6 +39,10 @@ namespace ApiGHMM.Data
 
         public DbSet<TecnicoTipoModel> TecnicoTipo { get; set; }
 
+        public DbSet<AvisoTipoModel> AvisoTipo { get; set; }
+
+        public DbSet<AvisoModel> Aviso { get; set; }
+
 
 
 
@@ -59,6 +63,8 @@ namespace ApiGHMM.Data
             modelBuilder.ApplyConfiguration(new TecnicosMaps());
             modelBuilder.ApplyConfiguration(new TecnicoUsuarioMaps());
             modelBuilder.ApplyConfiguration(new TecnicoTipoMaps());
+            modelBuilder.ApplyConfiguration(new AvisoTipoMap());
+            modelBuilder.ApplyConfiguration(new AvisoMap());
             base.OnModelCreating(modelBuilder);
         }
 

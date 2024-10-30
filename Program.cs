@@ -32,6 +32,8 @@ builder.Services.AddScoped<IManutencaoRepositorio, ManutencaoRepositorio>();
 builder.Services.AddScoped<ITecnicoRepositorio, TecnicoRepositorio>();
 builder.Services.AddScoped<ITecnicoUsuarioRepositorio, TecnicoUsuarioRepositorio>();
 builder.Services.AddScoped<ITecnicoTipoRepositorio, TecnicoTipoRepositorio>();
+builder.Services.AddScoped<IAvisoTipoRepositorio, AvisoTipoRepositorio>();
+builder.Services.AddScoped<IAvisoRepositorio, AvisoRepositorio>();
 
 builder.Services.AddCors(options =>
 {

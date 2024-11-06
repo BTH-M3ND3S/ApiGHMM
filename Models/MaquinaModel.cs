@@ -12,7 +12,7 @@
 
         public string Modelo { get; set; } = string.Empty;
 
-        public int NumeroSerie { get; set; }
+        public string NumeroSerie { get; set; } = string.Empty;
 
         public int FabricanteId { get; set; }
 

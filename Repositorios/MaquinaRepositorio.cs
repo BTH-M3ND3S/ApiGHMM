@@ -24,6 +24,11 @@ namespace ApiGHMM.Repositorios
             return await _dbContext.Maquina.FirstOrDefaultAsync(x => x.MaquinaId == id);
         }
 
+        public async Task<MaquinaModel> GetByNumeroSerie(string numeroSerie)
+        {
+            return await _dbContext.Maquina.FirstOrDefaultAsync(x => x.NumeroSerie == numeroSerie);
+        }
+
         public async Task<MaquinaModel> InsertMaquina(MaquinaModel maquina)
         {
             await _dbContext.Maquina.AddAsync(maquina);

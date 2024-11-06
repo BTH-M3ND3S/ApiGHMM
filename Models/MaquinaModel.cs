@@ -24,7 +24,7 @@
 
         public int Voltagem { get; set; }
 
-        public string MaquinaDetalhes { get; set; }
+        public string MaquinaDetalhes { get; set; } = string.Empty;
 
         public static implicit operator List<object>(MaquinaModel v)
         {

@@ -8,6 +8,8 @@ namespace ApiGHMM.Repositorios.Interfaces
 
         Task<MaquinaModel> GetById(int id);
 
+        Task<MaquinaModel> GetByNumeroSerie(string numeroSerie);
+
         Task<MaquinaModel> InsertMaquina(MaquinaModel maquina);
 
         Task<MaquinaModel> UpdateMaquina(MaquinaModel maquina, int id);

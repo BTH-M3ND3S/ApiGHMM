@@ -18,9 +18,9 @@ namespace ApiGHMM.Controllers
         }
 
         [HttpGet("GetAllAvisos")]
-        public async Task<ActionResult<List<AvisoModel>>> GetAllAvisos()
+        public async Task<ActionResult<List<AvisoCompleto>>> GetAllAvisos()
         {
-            List<AvisoModel> avisos = await _avisoRepositorio.GetAll();
+            List<AvisoCompleto> avisos = await _avisoRepositorio.GetAll();
             return Ok(avisos);
         }
 
@@ -28,6 +28,17 @@ namespace ApiGHMM.Controllers
         public async Task<ActionResult<AvisoModel>> GetAvisoById(int id)
         {
             AvisoModel aviso = await _avisoRepositorio.GetById(id);
+            if (aviso == null)
+            {
+                return NotFound();
+            }
+            return Ok(aviso);
+        }
+
+        [HttpGet("GetAvisoByIdCompleto/{id}")]
+        public async Task<ActionResult<AvisoCompleto>> GetAvisoByIdCompleto(int id)
+        {
+            AvisoCompleto aviso = await _avisoRepositorio.GetByIdCompleto(id);
             if (aviso == null)
             {
                 return NotFound();

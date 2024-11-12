@@ -4,9 +4,11 @@ namespace ApiGHMM.Repositorios.Interfaces
 {
     public interface IAvisoRepositorio
     {
-        Task<List<AvisoModel>> GetAll();
+        Task<List<AvisoCompleto>> GetAll();
 
         Task<AvisoModel> GetById(int id);
+
+        Task<AvisoCompleto> GetByIdCompleto(int id);
 
         Task<AvisoModel> InsertAviso(AvisoModel aviso);
 

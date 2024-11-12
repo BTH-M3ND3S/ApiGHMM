@@ -14,14 +14,85 @@ namespace ApiGHMM.Repositorios
             _dbContext = dbContext;
         }
 
-        public async Task<List<AvisoModel>> GetAll()
+        public async Task<List<AvisoCompleto>> GetAll()
         {
-            return await _dbContext.Aviso.ToListAsync();
+             var teste = await _dbContext.Aviso
+                 .Join(_dbContext.Usuario,
+                    aviso => aviso.UsuarioId,
+                    usuario => usuario.UsuarioId,
+                    (aviso, usuario) => new { aviso, usuario })
+                 .Join(_dbContext.AvisoTipo,
+                    aviso => aviso.aviso.AvisoTipoId,
+                    avisotipo => avisotipo.AvisoTipoId,
+                    (aviso, avisotipo) => new AvisoCompleto
+                    {
+                        AvisoId = aviso.aviso.AvisoId,
+                        AvisoConteudo = aviso.aviso.AvisoConteudo,
+                        AvisoVisto = aviso.aviso.AvisoVisto,
+                        Usuario = new UsuarioModel
+                        {
+                            UsuarioId = aviso.usuario.UsuarioId,
+                            FotoUrl = aviso.usuario.FotoUrl,
+                            UsuarioNome = aviso.usuario.UsuarioNome,
+                            UsuarioCpf = aviso.usuario.UsuarioCpf,
+                            UsuarioEmail = aviso.usuario.UsuarioEmail,
+                            UsuarioTelefone = aviso.usuario.UsuarioTelefone,
+                            UsuarioDataNascimento = aviso.usuario.UsuarioDataNascimento,
+                            UsuarioEscolaridade = aviso.usuario.UsuarioEscolaridade,
+                            UsuarioSenha = aviso.usuario.UsuarioSenha,
+                            CargoId = aviso.usuario.CargoId,
+                            SetorId = aviso.usuario.SetorId,
+                        },
+                        AvisoTipo = new AvisoTipoModel
+                        {
+                            AvisoTipoId = avisotipo.AvisoTipoId,
+                            AvisoTipoNome = avisotipo.AvisoTipoNome,
+                        }
+                    }).ToListAsync();
+            return teste;
         }
 
         public async Task<AvisoModel> GetById(int id)
         {
             return await _dbContext.Aviso.FirstOrDefaultAsync(x => x.AvisoId == id);
+        }
+
+        public async Task<AvisoCompleto> GetByIdCompleto(int id)
+        {
+            var teste = await _dbContext.Aviso
+                 .Join(_dbContext.Usuario,
+                    aviso => aviso.UsuarioId,
+                    usuario => usuario.UsuarioId,
+                    (aviso, usuario) => new { aviso, usuario })
+                 .Join(_dbContext.AvisoTipo,
+                    aviso => aviso.aviso.AvisoTipoId,
+                    avisotipo => avisotipo.AvisoTipoId,
+                    (aviso, avisotipo) => new AvisoCompleto
+                    {
+                        AvisoId = aviso.aviso.AvisoId,
+                        AvisoConteudo = aviso.aviso.AvisoConteudo,
+                        AvisoVisto = aviso.aviso.AvisoVisto,
+                        Usuario = new UsuarioModel
+                        {
+                            UsuarioId = aviso.usuario.UsuarioId,
+                            FotoUrl = aviso.usuario.FotoUrl,
+                            UsuarioNome = aviso.usuario.UsuarioNome,
+                            UsuarioCpf = aviso.usuario.UsuarioCpf,
+                            UsuarioEmail = aviso.usuario.UsuarioEmail,
+                            UsuarioTelefone = aviso.usuario.UsuarioTelefone,
+                            UsuarioDataNascimento = aviso.usuario.UsuarioDataNascimento,
+                            UsuarioEscolaridade = aviso.usuario.UsuarioEscolaridade,
+                            UsuarioSenha = aviso.usuario.UsuarioSenha,
+                            CargoId = aviso.usuario.CargoId,
+                            SetorId = aviso.usuario.SetorId,
+                        },
+                        AvisoTipo = new AvisoTipoModel
+                        {
+                            AvisoTipoId = avisotipo.AvisoTipoId,
+                            AvisoTipoNome = avisotipo.AvisoTipoNome,
+                        }
+                    }).FirstOrDefaultAsync(x => x.AvisoId == id);
+            return teste;
         }
 
         public async Task<AvisoModel> InsertAviso(AvisoModel aviso)

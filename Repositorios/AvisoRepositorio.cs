@@ -42,8 +42,8 @@ namespace ApiGHMM.Repositorios
             {
                 avisoExistente.AvisoConteudo = aviso.AvisoConteudo;
                 avisoExistente.AvisoVisto = aviso.AvisoVisto;
-                avisoExistente.Usuario = aviso.Usuario;
-                avisoExistente.AvisoTipo = aviso.AvisoTipo;
+                avisoExistente.UsuarioId = aviso.UsuarioId;
+                avisoExistente.AvisoTipoId = aviso.AvisoTipoId;
                 await _dbContext.SaveChangesAsync();
             }
             return avisoExistente;

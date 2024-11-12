@@ -37,9 +37,9 @@ namespace ApiGHMM.Controllers
         }
 
         [HttpGet("GetMaquinaByNumeroSerie/{numeroSerie}")]
-        public async Task<ActionResult<MaquinaModel>> GetMaquinaByNumeroSerie(string numeroSerie)
+        public async Task<ActionResult<MaquinaCompleto>> GetMaquinaByNumeroSerie(string numeroSerie)
         {
-            MaquinaModel maquina = await _maquinaRepositorio.GetByNumeroSerie(numeroSerie);
+            MaquinaCompleto maquina = await _maquinaRepositorio.GetByNumeroSerie(numeroSerie);
             if (maquina == null)
             {
                 return NotFound();

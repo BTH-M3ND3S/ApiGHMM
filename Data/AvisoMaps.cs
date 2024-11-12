@@ -12,8 +12,8 @@ namespace ApiGHMM.Data
             {
                 builder.HasKey(x => x.AvisoId);
                 builder.Property(x => x.AvisoConteudo).IsRequired().HasMaxLength(255);
-            builder.Property(x => x.Usuario).IsRequired().HasMaxLength(255);
-            builder.Property(x => x.AvisoTipo).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.UsuarioId).IsRequired();
+            builder.Property(x => x.AvisoTipoId).IsRequired();
         }
         }
     

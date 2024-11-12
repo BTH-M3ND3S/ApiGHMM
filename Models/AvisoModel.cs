@@ -8,9 +8,9 @@
 
         public Boolean AvisoVisto { get; set; }
 
-        public int Usuario { get; set; }
+        public int UsuarioId { get; set; }
         
-        public int AvisoTipo { get; set; }
+        public int AvisoTipoId { get; set; }
 
         public static implicit operator List<object>(AvisoModel v)
         {

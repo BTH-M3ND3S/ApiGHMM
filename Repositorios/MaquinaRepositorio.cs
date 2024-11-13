@@ -24,6 +24,51 @@ namespace ApiGHMM.Repositorios
             return await _dbContext.Maquina.FirstOrDefaultAsync(x => x.MaquinaId == id);
         }
 
+        public async Task<MaquinaCompleto> GetByIdCompleto(int id)
+        {
+            var teste = await _dbContext.Maquina
+                .Join(_dbContext.Fabricante,
+                   maquina => maquina.FabricanteId,
+                   fabricante => fabricante.FabricanteId,
+                   (maquina, fabricante) => new { maquina, fabricante })
+                .Join(_dbContext.TipoMaquina,
+                   maquina => maquina.maquina.TipoMaquinaId,
+                   tipoMaquina => tipoMaquina.TipoMaquinaId,
+                   (maquina, tipoMaquina) => new { maquina, tipoMaquina })
+                .Join(_dbContext.Setor,
+                       m => m.maquina.maquina.SetorId,
+                       setor => setor.SetorId,
+                       (m, setor) => new MaquinaCompleto
+                       {
+                           MaquinaId = m.maquina.maquina.MaquinaId,
+                           Nome = m.maquina.maquina.Nome,
+                           Modelo = m.maquina.maquina.Modelo,
+                           NumeroSerie = m.maquina.maquina.NumeroSerie,
+                           DataAquisicao = m.maquina.maquina.DataAquisicao,
+                           FotoUrl = m.maquina.maquina.FotoUrl,
+                           Peso = m.maquina.maquina.Peso,
+                           Voltagem = m.maquina.maquina.Voltagem,
+                           MaquinaDetalhes = m.maquina.maquina.MaquinaDetalhes,
+                           Setor = new SetorModel
+                           {
+                               SetorId = setor.SetorId,
+                               SetorNome = setor.SetorNome
+                           },
+                           Fabricante = new FabricanteModel
+                           {
+                               FabricanteId = m.maquina.fabricante.FabricanteId,
+                               FabricanteNome = m.maquina.fabricante.FabricanteNome
+                           },
+                           TipoMaquina = new TipoMaquinaModel
+                           {
+                               TipoMaquinaId = m.tipoMaquina.TipoMaquinaId,
+                               TipoMaquinaNome = m.tipoMaquina.TipoMaquinaNome
+                           }
+                       }).FirstOrDefaultAsync(x => x.MaquinaId == id);
+
+            return teste;
+        }
+
         public async Task<MaquinaCompleto> GetByNumeroSerie(string numeroSerie)
         {
             var teste =  await _dbContext.Maquina

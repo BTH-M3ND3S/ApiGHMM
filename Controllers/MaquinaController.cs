@@ -36,6 +36,17 @@ namespace ApiGHMM.Controllers
             return Ok(maquina);
         }
 
+        [HttpGet("GetMaquinaByIdCompleto/{id}")]
+        public async Task<ActionResult<MaquinaCompleto>> GetByIdCompleto(int id)
+        {
+            MaquinaCompleto maquina = await _maquinaRepositorio.GetByIdCompleto(id);
+            if (maquina == null)
+            {
+                return NotFound();
+            }
+            return Ok(maquina);
+        }
+
         [HttpGet("GetMaquinaByNumeroSerie/{numeroSerie}")]
         public async Task<ActionResult<MaquinaCompleto>> GetMaquinaByNumeroSerie(string numeroSerie)
         {

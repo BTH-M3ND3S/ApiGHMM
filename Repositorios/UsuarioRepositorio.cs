@@ -32,9 +32,9 @@ namespace ApiGHMM.Repositorios
             return usuario;
         }
 
-        public async Task<bool> Login(string email,string cpf, string password)
+        public async Task<bool> Login(string cpf, string password)
         {
-            var result = await _dbContext.Usuario.FirstOrDefaultAsync(x => x.UsuarioEmail == email && x.UsuarioSenha == password &&  x.UsuarioCpf == cpf);
+            var result = await _dbContext.Usuario.FirstOrDefaultAsync(x => x.UsuarioSenha == password &&  x.UsuarioCpf == cpf);
             if (result != null)
             {
                 return true;

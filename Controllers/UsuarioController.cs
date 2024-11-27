@@ -38,7 +38,7 @@ namespace ApiGHMM.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<bool>> Login([FromBody] UsuarioModel usuarioModel)
         {
-            var usuario = await _usuariosRepositorio.Login(usuarioModel.UsuarioEmail, usuarioModel.UsuarioCpf, usuarioModel.UsuarioSenha);
+            var usuario = await _usuariosRepositorio.Login(usuarioModel.UsuarioCpf, usuarioModel.UsuarioSenha);
             return Ok(usuario);
         }
 

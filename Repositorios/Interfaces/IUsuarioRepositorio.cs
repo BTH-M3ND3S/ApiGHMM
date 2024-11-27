@@ -14,6 +14,6 @@ namespace ApiGHMM.Repositorios.Interfaces
 
         Task<bool> DeleteUsuario(int id);
 
-        Task<bool> Login(string username,string cpf,  string password);
+        Task<bool> Login(string cpf,  string password);
     }
 }

@@ -41,6 +41,7 @@ namespace ApiGHMM.Repositorios
             else
             {
                 categoriaPecaExistente.CategoriaPecaNome = categoriaPeca.CategoriaPecaNome;
+                categoriaPecaExistente.FotoUrl = categoriaPeca.FotoUrl;
                 await _dbContext.SaveChangesAsync();
             }
             return categoriaPecaExistente;

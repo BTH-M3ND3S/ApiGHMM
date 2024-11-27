@@ -10,6 +10,7 @@ namespace ApiGHMM.Data
         {
             builder.HasKey(x => x.CategoriaPecaId);
             builder.Property(x => x.CategoriaPecaNome).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.FotoUrl).IsRequired().HasMaxLength(255);
         }
     }
 }
